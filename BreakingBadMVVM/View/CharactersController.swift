@@ -7,69 +7,33 @@
 //
 
 import Foundation
-import UIKit
+import RxSwift
 
-class CharactersController: UINavigationController {
 
-    private lazy var tableView = UITableView()
-
-    private lazy var viewModel = CharactersViewModel()
+class CharactersController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var viewModel: CharactersViewModel
+    var service: Service
     
-        setupView()
-        setupConstraints()
-        
-        Service.shared.fetchCharacters { result in
+    init(viewModel: CharactersViewModel,
+         service: Service = Service.shared) {
+        self.viewModel = viewModel
+        self.service = service
+    }
+    
+    
+    func setupController(){
+        self.viewModel.onLoading?(true)
+        service.fetchCharacters { result in
+            self.viewModel.onLoading?(false)
             switch result{
             case .success(let newCharacters):
-                self.viewModel.characters = newCharacters
-                self.tableView.reloadData()
+                self.viewModel.onCharacters?(newCharacters)
                 break
-            case .failure(let error): break
+            case .failure(let error):
+                self.viewModel.onError?(error)
+                break
             }
         }
     }
-    
-    
-    fileprivate func setupView(){
-        self.view.backgroundColor = .white
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(tableView)
-    }
-    
-    fileprivate func setupConstraints(){
-        let safeArea = view.safeAreaLayoutGuide
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
-        ])
-    }
-    
-    
-}
-
-extension CharactersController: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.characters.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let character =  viewModel.characters[indexPath.row]
-        let cell = ItemCell(with: character.name)
-        return cell
-    }
-
-}
-
-extension CharactersController: UITableViewDelegate{
-    
 }

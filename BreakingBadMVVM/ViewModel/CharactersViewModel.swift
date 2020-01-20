@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import RxSwift
 
-struct CharactersViewModel {
+class CharactersViewModel {
     
-    var characters: [Character] = []
-
+    var onCharacters: (([Character]) -> Void)?
     
+    var onError: ((ServiceError) -> Void)?
+    
+    var onLoading: ((Bool) -> Void)?
 }

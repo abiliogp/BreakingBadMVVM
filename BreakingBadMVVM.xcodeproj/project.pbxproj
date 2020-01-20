@@ -14,10 +14,11 @@
 		E08943C823D5C7960022D497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E08943C623D5C7960022D497 /* LaunchScreen.storyboard */; };
 		E08943D323D5C7960022D497 /* BreakingBadMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943D223D5C7960022D497 /* BreakingBadMVVMTests.swift */; };
 		E08943DE23D5C7960022D497 /* BreakingBadMVVMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943DD23D5C7960022D497 /* BreakingBadMVVMUITests.swift */; };
-		E08943EC23D5C9F50022D497 /* CharactersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943EB23D5C9F50022D497 /* CharactersController.swift */; };
+		E08943EC23D5C9F50022D497 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943EB23D5C9F50022D497 /* CharactersViewController.swift */; };
 		E08943EF23D5EE7C0022D497 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943EE23D5EE7C0022D497 /* ItemCell.swift */; };
 		E08943F123D5F6150022D497 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943F023D5F6150022D497 /* Character.swift */; };
 		E08943F423D5F62F0022D497 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943F323D5F62F0022D497 /* Service.swift */; };
+		E0BAFA2123D65A2F00D2968F /* CharactersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BAFA2023D65A2F00D2968F /* CharactersController.swift */; };
 		E0F258DB23D6112E00258BBC /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F258DA23D6112E00258BBC /* CharactersViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,10 +53,11 @@
 		E08943D923D5C7960022D497 /* BreakingBadMVVMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakingBadMVVMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E08943DD23D5C7960022D497 /* BreakingBadMVVMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakingBadMVVMUITests.swift; sourceTree = "<group>"; };
 		E08943DF23D5C7960022D497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E08943EB23D5C9F50022D497 /* CharactersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersController.swift; sourceTree = "<group>"; };
+		E08943EB23D5C9F50022D497 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		E08943EE23D5EE7C0022D497 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		E08943F023D5F6150022D497 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		E08943F323D5F62F0022D497 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		E0BAFA2023D65A2F00D2968F /* CharactersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersController.swift; sourceTree = "<group>"; };
 		E0F258DA23D6112E00258BBC /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,8 +151,9 @@
 		E08943ED23D5EE510022D497 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E08943EB23D5C9F50022D497 /* CharactersController.swift */,
+				E08943EB23D5C9F50022D497 /* CharactersViewController.swift */,
 				E08943EE23D5EE7C0022D497 /* ItemCell.swift */,
+				E0BAFA2023D65A2F00D2968F /* CharactersController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +191,8 @@
 			dependencies = (
 			);
 			name = BreakingBadMVVM;
+			packageProductDependencies = (
+			);
 			productName = BreakingBadMVVM;
 			productReference = E08943B823D5C78E0022D497 /* BreakingBadMVVM.app */;
 			productType = "com.apple.product-type.application";
@@ -260,6 +265,8 @@
 				Base,
 			);
 			mainGroup = E08943AF23D5C78D0022D497;
+			packageReferences = (
+			);
 			productRefGroup = E08943B923D5C78E0022D497 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -304,10 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E08943EF23D5EE7C0022D497 /* ItemCell.swift in Sources */,
+				E0BAFA2123D65A2F00D2968F /* CharactersController.swift in Sources */,
 				E0F258DB23D6112E00258BBC /* CharactersViewModel.swift in Sources */,
 				E08943BC23D5C78E0022D497 /* AppDelegate.swift in Sources */,
 				E08943F123D5F6150022D497 /* Character.swift in Sources */,
-				E08943EC23D5C9F50022D497 /* CharactersController.swift in Sources */,
+				E08943EC23D5C9F50022D497 /* CharactersViewController.swift in Sources */,
 				E08943BE23D5C78E0022D497 /* SceneDelegate.swift in Sources */,
 				E08943F423D5F62F0022D497 /* Service.swift in Sources */,
 			);
