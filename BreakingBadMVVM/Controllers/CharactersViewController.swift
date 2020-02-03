@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import RxSwift
 
 class CharactersViewController: UINavigationController {
 

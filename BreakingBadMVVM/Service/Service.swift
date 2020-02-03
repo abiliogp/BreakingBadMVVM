@@ -25,19 +25,17 @@ struct Service {
     
     static let shared = Service()
     
-    fileprivate let baseURL = "https://www.breakingbadapi.com/api"
-    fileprivate let endPointCharacters = "/characters"
+    fileprivate let baseURL = Environment.BASE_URL
+    fileprivate let endPointCharacters = Environment.ENDPOINT_CHARACTERS
     
     fileprivate init(){}
-    
-    
     
 }
 
 extension Service: CharacterServiceProtocol{
     
     func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> ()) {
-        
+
         guard let url = URL(string: "\(baseURL)\(endPointCharacters)") else { return }
         URLSession.shared.dataTask(with: url) {
             (data, resp, error) in
