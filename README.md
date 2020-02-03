@@ -1,4 +1,17 @@
-This code is just some sample how to use VFL with MVVM
+# BreakingBadMVVM
+
+A simple project build in Swift using Auto Layout Visual Format Language (VFL) under
+ModelView View Model (MVVM) architecture.
+
+## Goals
+VFL
+
+MVVM
+
+No Libs
+
+Base URL stored xcconfig
+
 
 
 DOC API.: https://www.breakingbadapi.com/
@@ -10,5 +23,3 @@ REF.: https://www.youtube.com/watch?v=sWx8TtRBOfk
 REF.: https://www.raywenderlich.com/6004856-building-an-app-with-only-code-using-auto-layout#toc-anchor-006
 
 REF.: https://flawlessapp.io/blog/advanced-mvvm-tableview-tutorial/
-
-
