@@ -98,6 +98,10 @@ extension CharactersViewController: UITableViewDataSource{
         let cell = ItemCell(with: character.name)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 132
+    }
 
 }
 

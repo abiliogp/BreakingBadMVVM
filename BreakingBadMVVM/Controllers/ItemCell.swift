@@ -23,13 +23,16 @@ class ItemCell: UITableViewCell {
     
     private lazy var imageItem: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.backgroundColor = .white
+        image.backgroundColor = .black
         image.layer.cornerRadius = 8
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.sizeThatFits(CGSize.init(width: 100, height: 100))
         return image
     }()
+    
+    private lazy var activityIndicator = UIActivityIndicatorView()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,25 +47,33 @@ class ItemCell: UITableViewCell {
     public convenience init(with title: String) {
         self.init(frame: .zero)
         textItem.text = title
+        activityIndicator.startAnimating()
     }
     
     private func setupViews() {
         addSubview(textItem)
         addSubview(imageItem)
+        addSubview(activityIndicator)
     }
     
     private func setupConstraints() {
         //add code here to layout views
         NSLayoutConstraint.activate([
             imageItem.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            imageItem.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
             imageItem.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            imageItem.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding)
+            imageItem.widthAnchor.constraint(equalToConstant: 100),
+            imageItem.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
-            textItem.topAnchor.constraint(equalTo: imageItem.bottomAnchor, constant: padding),
-            textItem.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            textItem.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding)
+            textItem.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            textItem.leadingAnchor.constraint(equalTo: imageItem.trailingAnchor, constant: padding)
+        ])
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
         
         //using add 1 its became bigger than values for imageView
