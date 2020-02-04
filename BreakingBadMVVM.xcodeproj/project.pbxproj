@@ -21,6 +21,7 @@
 		E0BD949C23E832F200D645F2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BD949B23E832F200D645F2 /* Environment.swift */; };
 		E0D0BD9E23E9C3350027A9AC /* CharacterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D0BD9D23E9C3350027A9AC /* CharacterServiceTests.swift */; };
 		E0D0BDA223E9C9A20027A9AC /* CharactersViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D0BDA123E9C9A20027A9AC /* CharactersViewModelTest.swift */; };
+		E0D0BDA423E9D1780027A9AC /* BreakingBadMVVMTestSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D0BDA323E9D1780027A9AC /* BreakingBadMVVMTestSuite.swift */; };
 		E0D4148923E98AEF00966A44 /* MockCharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4148823E98AEF00966A44 /* MockCharacterService.swift */; };
 		E0D4148B23E98D0B00966A44 /* characters.json in Resources */ = {isa = PBXBuildFile; fileRef = E0D4148A23E98D0B00966A44 /* characters.json */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		E0BD949B23E832F200D645F2 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		E0D0BD9D23E9C3350027A9AC /* CharacterServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterServiceTests.swift; sourceTree = "<group>"; };
 		E0D0BDA123E9C9A20027A9AC /* CharactersViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTest.swift; sourceTree = "<group>"; };
+		E0D0BDA323E9D1780027A9AC /* BreakingBadMVVMTestSuite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakingBadMVVMTestSuite.swift; sourceTree = "<group>"; };
 		E0D4148823E98AEF00966A44 /* MockCharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCharacterService.swift; sourceTree = "<group>"; };
 		E0D4148A23E98D0B00966A44 /* characters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = characters.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 		E08943D123D5C7960022D497 /* BreakingBadMVVMTests */ = {
 			isa = PBXGroup;
 			children = (
+				E0D0BDA323E9D1780027A9AC /* BreakingBadMVVMTestSuite.swift */,
 				E0D0BD9D23E9C3350027A9AC /* CharacterServiceTests.swift */,
 				E0D0BDA123E9C9A20027A9AC /* CharactersViewModelTest.swift */,
 				E0D4148823E98AEF00966A44 /* MockCharacterService.swift */,
@@ -356,6 +359,7 @@
 				E0D0BDA223E9C9A20027A9AC /* CharactersViewModelTest.swift in Sources */,
 				E0D0BD9E23E9C3350027A9AC /* CharacterServiceTests.swift in Sources */,
 				E0D4148923E98AEF00966A44 /* MockCharacterService.swift in Sources */,
+				E0D0BDA423E9D1780027A9AC /* BreakingBadMVVMTestSuite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
