@@ -15,7 +15,7 @@ class CharactersViewController: UINavigationController {
     
     private lazy var activityIndicator = UIActivityIndicatorView()
 
-    private var controller: CharactersController?
+    private var viewModel: CharactersViewModel?
     
     private var char: [Character] = []{
         didSet{
@@ -33,19 +33,18 @@ class CharactersViewController: UINavigationController {
     }
 
     fileprivate func setupMVVM(){
-        controller = CharactersController(viewModel: CharactersViewModel(),
-                                          service: Service.shared)
-        controller?.setupController()
+        viewModel = CharactersViewModel(service: Service.shared)
         setupBinding()
+        viewModel?.setupController()
     }
     
     fileprivate func setupBinding(){
-        controller?.viewModel.onCharacters = { [weak self] (characters) in
+        viewModel?.onCharacters = { [weak self] (characters) in
             guard let self = self else {return}
             self.char = characters
         }
         
-        controller?.viewModel.onLoading = { [weak self] (loading) in
+        viewModel?.onLoading = { [weak self] (loading) in
             guard let self = self else {return}
             if loading{
                 self.tableView.isHidden = true

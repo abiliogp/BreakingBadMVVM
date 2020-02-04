@@ -8,12 +8,14 @@
 
 import Foundation
 
-protocol CharacterServiceProtocol {
+
+
+protocol CharacterServiceProtocol{
     func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> ())
     func fecthCharacter(with id: Int, completionHandler: @escaping (Result<Character, ServiceError>) -> ())
 }
 
-protocol EpisodeServiceProtocol {
+protocol EpisodeServiceProtocol{
     
 }
 
@@ -21,7 +23,7 @@ enum ServiceError: Error{
     case unavailable
 }
 
-struct Service {
+struct Service{
     
     static let shared = Service()
     
