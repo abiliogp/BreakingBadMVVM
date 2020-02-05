@@ -21,6 +21,7 @@ protocol EpisodeServiceProtocol{
 
 enum ServiceError: Error{
     case unavailable
+    case decodeError
 }
 
 struct Service{
@@ -41,15 +42,17 @@ extension Service: CharacterServiceProtocol{
         guard let url = URL(string: "\(baseURL)\(endPointCharacters)") else { return }
         URLSession.shared.dataTask(with: url) {
             (data, resp, error) in
-            
-            if let data = data{
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                
+                if let data = data{
                     do{
                         let characters = try JSONDecoder().decode([Character].self, from: data)
                         completionHandler(.success(characters))
                     } catch{
-                        completionHandler(.failure(.unavailable))
+                        completionHandler(.failure(.decodeError))
                     }
+                } else{
+                    completionHandler(.failure(.unavailable))
                 }
             }
         }.resume()

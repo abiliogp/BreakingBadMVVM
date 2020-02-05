@@ -95,7 +95,8 @@ extension CharactersViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let character =  char[indexPath.row]
-        let cell = ItemCell(with: character.name)
+        let cellViewModel = ItemCellViewModel(model: character)
+        let cell = ItemCell(with: cellViewModel)
         return cell
     }
     

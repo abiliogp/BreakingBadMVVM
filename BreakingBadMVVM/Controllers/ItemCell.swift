@@ -11,6 +11,8 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     
+    private var itemCellViewModel: ItemCellViewModel?
+    
     private let padding: CGFloat = 16
     
     private lazy var textItem: UILabel = {
@@ -23,7 +25,7 @@ class ItemCell: UITableViewCell {
     
     private lazy var imageItem: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         image.backgroundColor = .black
         image.layer.cornerRadius = 8
@@ -44,10 +46,33 @@ class ItemCell: UITableViewCell {
         setupConstraints()
     }
     
-    public convenience init(with title: String) {
+    public convenience init(with modelView: ItemCellViewModel!) {
         self.init(frame: .zero)
-        textItem.text = title
-        activityIndicator.startAnimating()
+        self.itemCellViewModel = modelView
+        setupViewBind()
+    }
+    
+    private func setupViewBind(){
+        self.itemCellViewModel?.onImgLoading = { [weak self] (loading) in
+            guard let self = self else{ return }
+            if loading{
+                self.activityIndicator.startAnimating()
+            } else{
+                self.activityIndicator.stopAnimating()
+            }
+        }
+        
+        self.itemCellViewModel?.onImgReady = { [weak self] (imageView) in
+            guard let self = self else{ return }
+            self.imageItem.image = imageView
+        }
+        
+        self.itemCellViewModel?.onTitleReady = { [weak self] (title) in
+            guard let self = self else{ return }
+            self.textItem.text = title
+        }
+        
+        self.itemCellViewModel?.setupCell()
     }
     
     private func setupViews() {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E08225C523EAD0F4005D7311 /* ItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08225C423EAD0F4005D7311 /* ItemCellViewModel.swift */; };
+		E08225C723EAD5D1005D7311 /* ImageServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08225C623EAD5D1005D7311 /* ImageServiceTest.swift */; };
+		E08225C923EAD659005D7311 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08225C823EAD659005D7311 /* ImageService.swift */; };
 		E08943BC23D5C78E0022D497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943BB23D5C78E0022D497 /* AppDelegate.swift */; };
 		E08943BE23D5C78E0022D497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943BD23D5C78E0022D497 /* SceneDelegate.swift */; };
 		E08943C223D5C7960022D497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E08943C123D5C7960022D497 /* Assets.xcassets */; };
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E08225C423EAD0F4005D7311 /* ItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModel.swift; sourceTree = "<group>"; };
+		E08225C623EAD5D1005D7311 /* ImageServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTest.swift; sourceTree = "<group>"; };
+		E08225C823EAD659005D7311 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		E08943B823D5C78E0022D497 /* BreakingBadMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakingBadMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E08943BB23D5C78E0022D497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E08943BD23D5C78E0022D497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			children = (
 				E0D0BDA323E9D1780027A9AC /* BreakingBadMVVMTestSuite.swift */,
 				E0D0BD9D23E9C3350027A9AC /* CharacterServiceTests.swift */,
+				E08225C623EAD5D1005D7311 /* ImageServiceTest.swift */,
 				E0D0BDA123E9C9A20027A9AC /* CharactersViewModelTest.swift */,
 				E0D4148823E98AEF00966A44 /* MockCharacterService.swift */,
 				E08943D423D5C7960022D497 /* Info.plist */,
@@ -165,8 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				E08943EB23D5C9F50022D497 /* CharactersViewController.swift */,
-				E08943EE23D5EE7C0022D497 /* ItemCell.swift */,
 				E0BAFA2023D65A2F00D2968F /* CharactersViewModel.swift */,
+				E08943EE23D5EE7C0022D497 /* ItemCell.swift */,
+				E08225C423EAD0F4005D7311 /* ItemCellViewModel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -192,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				E08943F323D5F62F0022D497 /* Service.swift */,
+				E08225C823EAD659005D7311 /* ImageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -344,8 +353,10 @@
 				E08943EF23D5EE7C0022D497 /* ItemCell.swift in Sources */,
 				E0BAFA2123D65A2F00D2968F /* CharactersViewModel.swift in Sources */,
 				E08943BC23D5C78E0022D497 /* AppDelegate.swift in Sources */,
+				E08225C923EAD659005D7311 /* ImageService.swift in Sources */,
 				E0BD949C23E832F200D645F2 /* Environment.swift in Sources */,
 				E08943F123D5F6150022D497 /* Character.swift in Sources */,
+				E08225C523EAD0F4005D7311 /* ItemCellViewModel.swift in Sources */,
 				E08943EC23D5C9F50022D497 /* CharactersViewController.swift in Sources */,
 				E08943BE23D5C78E0022D497 /* SceneDelegate.swift in Sources */,
 				E08943F423D5F62F0022D497 /* Service.swift in Sources */,
@@ -356,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E08225C723EAD5D1005D7311 /* ImageServiceTest.swift in Sources */,
 				E0D0BDA223E9C9A20027A9AC /* CharactersViewModelTest.swift in Sources */,
 				E0D0BD9E23E9C3350027A9AC /* CharacterServiceTests.swift in Sources */,
 				E0D4148923E98AEF00966A44 /* MockCharacterService.swift in Sources */,
