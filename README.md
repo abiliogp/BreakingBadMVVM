@@ -2,6 +2,7 @@
 ![platforms](https://img.shields.io/badge/platforms-iPhone-lightgrey)
 ![Build Status](https://travis-ci.com/abiliogp/BreakingBadMVVM.svg?branch=master)
 [![codecov](https://codecov.io/gh/abiliogp/BreakingBadMVVM/branch/master/graph/badge.svg)](https://codecov.io/gh/abiliogp/BreakingBadMVVM)
+[![HitCount](http://hits.dwyl.io/abiliogp/BreakingBadMVVM.svg)](http://hits.dwyl.io/abiliogp/BreakingBadMVVM)
 
 
 # BreakingBadMVVM
