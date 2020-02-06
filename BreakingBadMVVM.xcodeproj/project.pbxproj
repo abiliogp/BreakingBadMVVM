@@ -13,7 +13,6 @@
 		E08943BC23D5C78E0022D497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943BB23D5C78E0022D497 /* AppDelegate.swift */; };
 		E08943BE23D5C78E0022D497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943BD23D5C78E0022D497 /* SceneDelegate.swift */; };
 		E08943C223D5C7960022D497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E08943C123D5C7960022D497 /* Assets.xcassets */; };
-		E08943C523D5C7960022D497 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E08943C423D5C7960022D497 /* Preview Assets.xcassets */; };
 		E08943C823D5C7960022D497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E08943C623D5C7960022D497 /* LaunchScreen.storyboard */; };
 		E08943DE23D5C7960022D497 /* BreakingBadMVVMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943DD23D5C7960022D497 /* BreakingBadMVVMUITests.swift */; };
 		E08943EC23D5C9F50022D497 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943EB23D5C9F50022D497 /* CharactersViewController.swift */; };
@@ -56,7 +55,6 @@
 		E08943BB23D5C78E0022D497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E08943BD23D5C78E0022D497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E08943C123D5C7960022D497 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E08943C423D5C7960022D497 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E08943C723D5C7960022D497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E08943C923D5C7960022D497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E08943CE23D5C7960022D497 /* BreakingBadMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakingBadMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,20 +131,11 @@
 				E08943BD23D5C78E0022D497 /* SceneDelegate.swift */,
 				E0BD949723E82D7A00D645F2 /* Configs */,
 				E0BD949A23E82EA800D645F2 /* Resources */,
-				E08943C323D5C7960022D497 /* Preview Content */,
 				E08943ED23D5EE510022D497 /* Controllers */,
 				E0BD949923E82E7A00D645F2 /* Service */,
 				E08943F223D5F61D0022D497 /* Model */,
 			);
 			path = BreakingBadMVVM;
-			sourceTree = "<group>";
-		};
-		E08943C323D5C7960022D497 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				E08943C423D5C7960022D497 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		E08943D123D5C7960022D497 /* BreakingBadMVVMTests */ = {
@@ -329,7 +318,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E08943C823D5C7960022D497 /* LaunchScreen.storyboard in Resources */,
-				E08943C523D5C7960022D497 /* Preview Assets.xcassets in Resources */,
 				E08943C223D5C7960022D497 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,7 +526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0BD949823E82E4B00D645F2 /* Development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BreakingBadMVVM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -558,7 +546,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0BD949823E82E4B00D645F2 /* Development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BreakingBadMVVM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
