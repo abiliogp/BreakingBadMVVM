@@ -1,5 +1,5 @@
 ![Swift5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
-![platforms](https://img.shields.io/badge/platforms-iPhone%20%7C%20iPad%20%7C%20macOS-lightgrey)
+![platforms](https://img.shields.io/badge/platforms-iPhone-lightgrey)
 ![Build Status](https://travis-ci.com/abiliogp/BreakingBadMVVM.svg?branch=master)
 
 
