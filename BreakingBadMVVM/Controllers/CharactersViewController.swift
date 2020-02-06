@@ -11,9 +11,19 @@ import UIKit
 
 class CharactersViewController: UINavigationController {
 
-    private lazy var tableView = UITableView()
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
-    private lazy var activityIndicator = UIActivityIndicatorView()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
 
     private var viewModel: CharactersViewModel?
     
@@ -58,13 +68,6 @@ class CharactersViewController: UINavigationController {
     
     fileprivate func setupView(){
         self.view.backgroundColor = .white
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
         self.view.addSubview(activityIndicator)
         self.view.addSubview(tableView)
     }
@@ -84,8 +87,6 @@ class CharactersViewController: UINavigationController {
             activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
         ])
     }
-    
-    
 }
 
 extension CharactersViewController: UITableViewDataSource{

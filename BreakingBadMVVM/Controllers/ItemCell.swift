@@ -34,7 +34,12 @@ class ItemCell: UITableViewCell {
         return image
     }()
     
-    private lazy var activityIndicator = UIActivityIndicatorView()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = UIColor.white
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -97,8 +102,8 @@ class ItemCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            activityIndicator.centerYAnchor.constraint(equalTo: self.imageItem.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: self.imageItem.centerXAnchor)
         ])
         
         //using add 1 its became bigger than values for imageView

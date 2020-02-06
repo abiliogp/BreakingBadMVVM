@@ -41,7 +41,7 @@ class ItemCellViewModel{
             case .success(let img):
                 self.onImgReady?(img)
                 break
-            case .failure(let error):
+            case .failure(_):
                 break
             }
         })
