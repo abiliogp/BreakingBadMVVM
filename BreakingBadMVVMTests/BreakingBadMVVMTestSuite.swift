@@ -15,6 +15,8 @@ class BreakingBadMVVMTestSuite: XCTestCase {
         let suite = XCTestSuite(forTestCaseClass: BreakingBadMVVMTestSuite.self)
         XCTestSuite(forTestCaseClass: CharacterServiceTests.self).tests.forEach { suite.addTest($0)}
         XCTestSuite(forTestCaseClass: CharactersViewModelTest.self).tests.forEach { suite.addTest($0)}
+        XCTestSuite(forTestCaseClass: ImageServiceTest.self).tests.forEach { suite.addTest($0)}
+        XCTestSuite(forTestCaseClass: CacheServiceTest.self).tests.forEach { suite.addTest($0)}
         return suite
     }
     
