@@ -82,29 +82,5 @@ class ImageServiceTest: XCTestCase {
         
         wait(for: [expectImg], timeout: 5.0)
     }
-    
-    func testExtractFileName() {
-        let input = "https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg"
-        
-        let output = ImageService.shared.extractFileName(input: input)
-        
-        XCTAssertEqual(output, "cast_bb_700x1000_walter-white-lg.jpg")
-    }
-    
-    func testExtractFileNameFromMiddle() {
-        let input = "https://vignette.wikia.nocookie.net/breakingbad/images/1/16/Saul_Goodman.jpg/revision/latest?cb=20120704065846"
-        
-        let output = ImageService.shared.extractFileName(input: input)
-        
-        XCTAssertEqual(output, "Saul_Goodman.jpg")
-    }
-    
-    func testExtractFileNameFromPng() {
-        let input = "https://vignette.wikia.nocookie.net/breakingbad/images/9/95/Todd_brba5b.png/revision/latest?cb=20130717134303"
-        
-        let output = ImageService.shared.extractFileName(input: input)
-        
-        XCTAssertEqual(output, "Todd_brba5b.png")
-    }
 
 }
