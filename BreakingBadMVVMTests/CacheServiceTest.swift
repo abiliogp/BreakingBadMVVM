@@ -30,7 +30,6 @@ class CacheServiceTest: XCTestCase {
             XCTAssertNotNil(url.path)
         } catch {
             assertionFailure()
-
         }
     }
 
@@ -42,7 +41,6 @@ class CacheServiceTest: XCTestCase {
         } catch {
             assertionFailure()
         }
-
     }
 
     func testShouldSaveFile() {
