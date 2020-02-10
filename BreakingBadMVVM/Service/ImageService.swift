@@ -17,7 +17,7 @@ class ImageService {
     
     static let shared = ImageService()
     
-    private let folderNamed = "img"
+    private let folderNamed = Keys.Files.Folder.images
     
     private static var imgDic: [String:Data] = [:]
     

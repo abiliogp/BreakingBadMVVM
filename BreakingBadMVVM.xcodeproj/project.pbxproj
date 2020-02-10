@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E035522323F1750F00667B7C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E035522223F1750F00667B7C /* Keys.swift */; };
 		E08225C523EAD0F4005D7311 /* ItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08225C423EAD0F4005D7311 /* ItemCellViewModel.swift */; };
 		E08225C723EAD5D1005D7311 /* ImageServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08225C623EAD5D1005D7311 /* ImageServiceTest.swift */; };
 		E08225C923EAD659005D7311 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08225C823EAD659005D7311 /* ImageService.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E035522223F1750F00667B7C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		E08225C423EAD0F4005D7311 /* ItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellViewModel.swift; sourceTree = "<group>"; };
 		E08225C623EAD5D1005D7311 /* ImageServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTest.swift; sourceTree = "<group>"; };
 		E08225C823EAD659005D7311 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				E0BD949823E82E4B00D645F2 /* Development.xcconfig */,
 				E0BD949B23E832F200D645F2 /* Environment.swift */,
+				E035522223F1750F00667B7C /* Keys.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E08943EF23D5EE7C0022D497 /* ItemCell.swift in Sources */,
+				E035522323F1750F00667B7C /* Keys.swift in Sources */,
 				E0BAFA2123D65A2F00D2968F /* CharactersViewModel.swift in Sources */,
 				E08943BC23D5C78E0022D497 /* AppDelegate.swift in Sources */,
 				E08225C923EAD659005D7311 /* ImageService.swift in Sources */,

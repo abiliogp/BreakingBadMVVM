@@ -18,14 +18,14 @@ public enum Environment{
     }()
     
     static let BASE_URL: String = {
-      guard let baseUrl = Environment.infoDictionary["BASE_URL"] as? String else {
+        guard let baseUrl = Environment.infoDictionary[Keys.Plist.baseUrl] as? String else {
         fatalError("API Key not set in plist for this environment")
       }
       return baseUrl
     }()
     
     static let ENDPOINT_CHARACTERS: String = {
-      guard let endpointCharacters = Environment.infoDictionary["ENDPOINT_CHARACTERS"] as? String else {
+        guard let endpointCharacters = Environment.infoDictionary[Keys.Plist.endpointCharacters] as? String else {
         fatalError("API Key not set in plist for this environment")
       }
       return endpointCharacters

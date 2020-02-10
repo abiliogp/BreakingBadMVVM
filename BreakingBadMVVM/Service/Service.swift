@@ -28,11 +28,11 @@ struct Service{
     
     static let shared = Service()
     
-    fileprivate let baseURL = Environment.BASE_URL
-    fileprivate let endPointCharacters = Environment.ENDPOINT_CHARACTERS
+    private let baseURL = Environment.BASE_URL
+    private let endPointCharacters = Environment.ENDPOINT_CHARACTERS
     
-    private let folderNamed = "charcs"
-    private let fileNamed = "characters.json"
+    private let folderNamed = Keys.Files.Folder.characters
+    private let fileNamed = Keys.Files.Payload.characters
 
     fileprivate init(){}
     
