@@ -1,3 +1,9 @@
+![Swift5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
+![platforms](https://img.shields.io/badge/platforms-iPhone-lightgrey)
+![Build Status](https://travis-ci.com/abiliogp/BreakingBadMVVM.svg?branch=master)
+[![codecov](https://codecov.io/gh/abiliogp/BreakingBadMVVM/branch/master/graph/badge.svg)](https://codecov.io/gh/abiliogp/BreakingBadMVVM)
+
+
 # BreakingBadMVVM
 
 A simple project build in Swift using Auto Layout Visual Format Language (VFL) under
@@ -29,3 +35,8 @@ REF.: https://www.youtube.com/watch?v=sWx8TtRBOfk
 REF.: https://www.raywenderlich.com/6004856-building-an-app-with-only-code-using-auto-layout#toc-anchor-006
 
 REF.: https://flawlessapp.io/blog/advanced-mvvm-tableview-tutorial/
+
+
+---
+
+[![LinkedIn](https://img.shields.io/badge/linkedin-abiliogp-blue)](https://www.linkedin.com/in/abilio-parada-464b247a/)
