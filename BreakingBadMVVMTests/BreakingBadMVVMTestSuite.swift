@@ -10,7 +10,7 @@ import XCTest
 @testable import BreakingBadMVVM
 
 class BreakingBadMVVMTestSuite: XCTestCase {
-    
+
     override class var defaultTestSuite: XCTestSuite {
         let suite = XCTestSuite(forTestCaseClass: BreakingBadMVVMTestSuite.self)
         XCTestSuite(forTestCaseClass: CharacterServiceTests.self).tests.forEach { suite.addTest($0)}
@@ -19,9 +19,8 @@ class BreakingBadMVVMTestSuite: XCTestCase {
         XCTestSuite(forTestCaseClass: CacheServiceTest.self).tests.forEach { suite.addTest($0)}
         return suite
     }
-    
+
     func testingStarts() {
         XCTAssert(true)
     }
-    
 }

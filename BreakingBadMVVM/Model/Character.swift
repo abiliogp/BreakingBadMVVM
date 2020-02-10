@@ -9,7 +9,7 @@
 import Foundation
 
 struct Character: Codable {
-    
+
     var charId: Int
     var name: String
     var birthday: String
@@ -21,7 +21,7 @@ struct Character: Codable {
     var portrayed: String
     var category: String
     var betterCallSaulAppearance: [Int]
-    
+
     enum CodingKeys: String, CodingKey {
         case charId = "char_id",
         name,
@@ -35,5 +35,4 @@ struct Character: Codable {
         category,
         betterCallSaulAppearance = "better_call_saul_appearance"
     }
-    
 }

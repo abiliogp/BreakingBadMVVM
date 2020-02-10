@@ -8,94 +8,81 @@
 
 import Foundation
 
-
-
-protocol CharacterServiceProtocol{
-    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> ())
-    func fecthCharacter(with id: Int, completionHandler: @escaping (Result<Character, ServiceError>) -> ())
+protocol CharacterServiceProtocol {
+    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void)
 }
 
-protocol EpisodeServiceProtocol{
-    
-}
-
-enum ServiceError: Error{
+enum ServiceError: Error {
     case unavailable
     case decodeError
 }
 
-struct Service{
-    
-    static let shared = Service()
-    
-    private let baseURL = Environment.BASE_URL
-    private let endPointCharacters = Environment.ENDPOINT_CHARACTERS
-    
-    private let folderNamed = Keys.Files.Folder.characters
-    private let fileNamed = Keys.Files.Payload.characters
+struct Service {
 
-    fileprivate init(){}
-    
+    static let shared = Service()
+
+    private let baseURL = Environment.baseUrl
+    private let endPointCharacters = Environment.endpointCharacters
+
+    private let folderNamed = Files.Folder.characters
+    private let fileNamed = Files.Payload.characters
+
+    private init() {}
+
 }
 
-extension Service: CharacterServiceProtocol{
-    
-    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> ()) {
+extension Service: CharacterServiceProtocol {
+
+    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
         guard let url = URL(string: "\(baseURL)\(endPointCharacters)") else { return }
-        
-        if CacheService.shared.hasFile(named: fileNamed, folder: folderNamed){
-            do{
+
+        do {
+            if try CacheService.shared.hasFile(named: fileNamed, folder: folderNamed) {
+
                 try CacheService.shared.loadFile(named: fileNamed, folder: folderNamed) { (data) in
                     self.convertData(data: data) { (result) in
                         completionHandler(result)
                     }
                 }
-            } catch{
+            } else {
                 fetchFromServer(from: url) { (result) in
                     completionHandler(result)
                 }
             }
-        } else{
+        } catch {
             fetchFromServer(from: url) { (result) in
                 completionHandler(result)
             }
         }
+
     }
-    
-    func fetchFromServer(from url: URL, completionHandler: @escaping (Result<[Character], ServiceError>) -> ()) {
-        URLSession.shared.dataTask(with: url) {
-            (data, resp, error) in
+
+    func fetchFromServer(from url: URL, completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
+        URLSession.shared.dataTask(with: url) {(data, _, _) in
             DispatchQueue.main.async {
-                
-                if let data = data{
-                    do{
+
+                if let data = data {
+                    do {
                         let characters = try JSONDecoder().decode([Character].self, from: data)
                         completionHandler(.success(characters))
-                        try! CacheService.shared.saveFile(named: self.fileNamed, folder: self.folderNamed, data: data)
-                    } catch{
+                        try CacheService.shared.saveFile(named: self.fileNamed, folder: self.folderNamed, data: data)
+                    } catch {
                         completionHandler(.failure(.decodeError))
                     }
-                } else{
+                } else {
                     completionHandler(.failure(.unavailable))
                 }
             }
         }.resume()
     }
-    
-    private func convertData(data: Data, completionHandler: @escaping (Result<[Character], ServiceError>) -> Void){
-        do{
+
+    private func convertData(data: Data, completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
+        do {
             let characters = try JSONDecoder().decode([Character].self, from: data)
             completionHandler(.success(characters))
-        } catch{
+        } catch {
             completionHandler(.failure(.decodeError))
         }
     }
-    
-    
-    func fecthCharacter(with id: Int, completionHandler: @escaping (Result<Character, ServiceError>) -> ()) {
-        
-    }
-    
+
 }
-
-

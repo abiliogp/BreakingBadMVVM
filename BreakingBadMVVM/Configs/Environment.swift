@@ -8,23 +8,23 @@
 
 import Foundation
 
-public enum Environment{
-    
+public enum Environment {
+
     private static let infoDictionary: [String: Any] = {
       guard let dict = Bundle.main.infoDictionary else {
         fatalError("Plist file not found")
       }
       return dict
     }()
-    
-    static let BASE_URL: String = {
+
+    static let baseUrl: String = {
         guard let baseUrl = Environment.infoDictionary[Keys.Plist.baseUrl] as? String else {
         fatalError("API Key not set in plist for this environment")
       }
       return baseUrl
     }()
-    
-    static let ENDPOINT_CHARACTERS: String = {
+
+    static let endpointCharacters: String = {
         guard let endpointCharacters = Environment.infoDictionary[Keys.Plist.endpointCharacters] as? String else {
         fatalError("API Key not set in plist for this environment")
       }

@@ -8,32 +8,29 @@
 
 import Foundation
 
-
 class CharactersViewModel {
-    
+
     var onCharacters: (([Character]) -> Void)?
-    
+
     var onError: ((ServiceError) -> Void)?
-    
+
     var onLoading: ((Bool) -> Void)?
-    
+
     var service: CharacterServiceProtocol
-    
+
     init(service: CharacterServiceProtocol = Service.shared) {
         self.service = service
     }
-    
-    func setupController(){
+
+    func setupController() {
         self.onLoading?(true)
         service.fetchCharacters { [weak self] result in
             self?.onLoading?(false)
-            switch result{
+            switch result {
             case .success(let newCharacters):
                 self?.onCharacters?(newCharacters)
-                break
             case .failure(let error):
                 self?.onError?(error)
-                break
             }
         }
     }

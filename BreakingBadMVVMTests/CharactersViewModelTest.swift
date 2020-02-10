@@ -9,12 +9,11 @@
 import XCTest
 @testable import BreakingBadMVVM
 
-
 class CharactersViewModelTest: XCTestCase {
 
     var viewModel: CharactersViewModel!
     var mockCharacterService: MockCharacterService!
-    
+
     override func setUp() {
         super.setUp()
         mockCharacterService = MockCharacterService()
@@ -34,38 +33,38 @@ class CharactersViewModelTest: XCTestCase {
         var timesForLoading = 0
         var loading = false
         var charcs = [Character]()
-        
+
         mockCharacterService.clear()
 
         viewModel.onLoading = { (load) in
             loading = load
             timesForLoading += 1
         }
-        
+
         viewModel.onCharacters = { (characters) in
             charcs = characters
             expectFetch.fulfill()
         }
-        
+
         //WHEN
         viewModel.setupController()
 
         //THEN
         wait(for: [expectFetch], timeout: 1.0)
-        
+
         XCTAssert(loading == false)
         XCTAssert(charcs.isEmpty == false)
         XCTAssert(timesForLoading == 2)
     }
-    
+
     func testShouldShowErrosWhenErro() {
         //GIVEN
         let expectError = XCTestExpectation()
 
         var timesForLoading = 0
         var loading = false
-        var errorService: Error? = nil
-        
+        var errorService: Error?
+
         mockCharacterService.clear()
         mockCharacterService.forceError = true
 
@@ -73,21 +72,21 @@ class CharactersViewModelTest: XCTestCase {
             loading = load
             timesForLoading += 1
         }
-        
+
         viewModel.onError = { (error) in
             errorService = error
             expectError.fulfill()
         }
-        
+
         //WHEN
         viewModel.setupController()
 
         //THEN
         wait(for: [expectError], timeout: 1.0)
-        
+
         XCTAssert(loading == false)
         XCTAssert(timesForLoading == 2)
-        
+
         XCTAssert(errorService is ServiceError)
     }
 

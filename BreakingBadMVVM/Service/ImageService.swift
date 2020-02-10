@@ -14,51 +14,57 @@ protocol ImageServiceProtocol {
 }
 
 class ImageService {
-    
+
     static let shared = ImageService()
-    
-    private let folderNamed = Keys.Files.Folder.images
-    
-    private static var imgDic: [String:Data] = [:]
-    
-    private init(){}
-    
+
+    private let folderNamed = Files.Folder.images
+
+    private init() {}
 }
 
-extension ImageService: ImageServiceProtocol{
-    
-    func fetchImage(from url: String, completionHandler: @escaping (Result<UIImage, ServiceError>) -> Void) {
+extension ImageService: ImageServiceProtocol {
+
+    func fetchImage(from url: String,
+                    completionHandler: @escaping (Result<UIImage, ServiceError>) -> Void) {
         guard let imgUrl = URL(string: url) else { return }
-        
+
         let fileNamed = CacheService.shared.extractFileName(input: imgUrl.path)
-        
-        if CacheService.shared.hasFile(named: fileNamed, folder: folderNamed) {
-            do{
+
+        do {
+            if try CacheService.shared.hasFile(named: fileNamed, folder: folderNamed) {
+
                 try CacheService.shared.loadFile(named: fileNamed, folder: folderNamed) { (data) in
-                    if let image = UIImage(data: data){
+                    if let image = UIImage(data: data) {
                         completionHandler(.success(image))
                     }
                 }
-            } catch{
+            } else {
                 fetchFromServer(from: imgUrl, fileNamed: fileNamed) { (result) in
                     completionHandler(result)
                 }
             }
-        } else{
+        } catch {
             fetchFromServer(from: imgUrl, fileNamed: fileNamed) { (result) in
                 completionHandler(result)
             }
         }
+
     }
-    
-    func fetchFromServer(from url: URL, fileNamed: String, completionHandler: @escaping (Result<UIImage, ServiceError>) -> Void){
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+    func fetchFromServer(from url: URL,
+                         fileNamed: String,
+                         completionHandler: @escaping (Result<UIImage, ServiceError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
             DispatchQueue.main.async {
-                if let data = data, let image = UIImage(data: data){
+                if let data = data, let image = UIImage(data: data) {
                     completionHandler(.success(image))
-                    
-                    try! CacheService.shared.saveFile(named: fileNamed, folder: self.folderNamed, data: data)
-                } else{
+
+                    do {
+                        try CacheService.shared.saveFile(named: fileNamed, folder: self.folderNamed, data: data)
+                    } catch {
+                        completionHandler(.failure(.decodeError))
+                    }
+                } else {
                     completionHandler(.failure(.unavailable))
                 }
             }

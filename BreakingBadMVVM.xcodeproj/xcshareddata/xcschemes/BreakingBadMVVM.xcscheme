@@ -39,16 +39,6 @@
                ReferencedContainer = "container:BreakingBadMVVM.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E08943D823D5C7960022D497"
-               BuildableName = "BreakingBadMVVMUITests.xctest"
-               BlueprintName = "BreakingBadMVVMUITests"
-               ReferencedContainer = "container:BreakingBadMVVM.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

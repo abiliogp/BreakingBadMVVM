@@ -8,20 +8,20 @@
 
 import Foundation
 
-public struct Keys{
+public struct Keys {
     struct Plist {
         static let baseUrl = "BASE_URL"
         static let endpointCharacters = "ENDPOINT_CHARACTERS"
     }
-    
-    struct Files {
-        struct Folder {
-            static let images = "img"
-            static let characters = "charcs"
-        }
-        
-        struct Payload {
-            static let characters = "characters.json"
-        }
+}
+
+public struct Files {
+    struct Folder {
+        static let images = "img"
+        static let characters = "charcs"
+    }
+
+    struct Payload {
+        static let characters = "characters.json"
     }
 }

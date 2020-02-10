@@ -9,36 +9,36 @@
 import Foundation
 @testable import BreakingBadMVVM
 
-class MockCharacterService: CharacterServiceProtocol{
-    
+class MockCharacterService: CharacterServiceProtocol {
+
     var forceError = false
     var timesFetchCharacters = 0
-    
-    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> ()) {
+
+    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
         if forceError {
             completionHandler(.failure(.unavailable))
-        } else{
-            completionHandler(.success(GenerateCharacter().generate()))
+        } else {
+            do {
+                try completionHandler(.success(GenerateCharacter().generate()))
+            } catch {
+                completionHandler(.failure(.decodeError))
+            }
         }
     }
-    
-    func fecthCharacter(with id: Int, completionHandler: @escaping (Result<Character, ServiceError>) -> ()) {
-        
-    }
-    
-    func clear(){
+
+    func clear() {
         forceError = false
         timesFetchCharacters = 0
     }
 }
 
-fileprivate class GenerateCharacter{
-    
-    func generate() -> [Character] {
+private class GenerateCharacter {
+
+    func generate() throws -> [Character] {
         let testBundle = Bundle(for: type(of: self))
         let path = testBundle.path(forResource: "characters", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
-        let characters = try! JSONDecoder().decode([Character].self, from: data)
+        let data = try Data(contentsOf: URL(fileURLWithPath: path))
+        let characters = try JSONDecoder().decode([Character].self, from: data)
         return characters
     }
 }

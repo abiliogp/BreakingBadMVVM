@@ -15,7 +15,6 @@
 		E08943BE23D5C78E0022D497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943BD23D5C78E0022D497 /* SceneDelegate.swift */; };
 		E08943C223D5C7960022D497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E08943C123D5C7960022D497 /* Assets.xcassets */; };
 		E08943C823D5C7960022D497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E08943C623D5C7960022D497 /* LaunchScreen.storyboard */; };
-		E08943DE23D5C7960022D497 /* BreakingBadMVVMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943DD23D5C7960022D497 /* BreakingBadMVVMUITests.swift */; };
 		E08943EC23D5C9F50022D497 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943EB23D5C9F50022D497 /* CharactersViewController.swift */; };
 		E08943EF23D5EE7C0022D497 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943EE23D5EE7C0022D497 /* ItemCell.swift */; };
 		E08943F123D5F6150022D497 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08943F023D5F6150022D497 /* Character.swift */; };
@@ -62,14 +61,12 @@
 		E08943CE23D5C7960022D497 /* BreakingBadMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakingBadMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E08943D423D5C7960022D497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E08943D923D5C7960022D497 /* BreakingBadMVVMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakingBadMVVMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E08943DD23D5C7960022D497 /* BreakingBadMVVMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakingBadMVVMUITests.swift; sourceTree = "<group>"; };
-		E08943DF23D5C7960022D497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E08943EB23D5C9F50022D497 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		E08943EE23D5EE7C0022D497 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		E08943F023D5F6150022D497 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		E08943F323D5F62F0022D497 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E0909A7B23EC1C9100FCC58E /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
-		E0909A7D23EC1F3100FCC58E /* CacheServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheServiceTest.swift; sourceTree = "<group>"; };
+		E0909A7D23EC1F3100FCC58E /* CacheServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheServiceTest.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		E0BAFA2023D65A2F00D2968F /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
 		E0BD949823E82E4B00D645F2 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		E0BD949B23E832F200D645F2 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -110,7 +107,6 @@
 			children = (
 				E08943BA23D5C78E0022D497 /* BreakingBadMVVM */,
 				E08943D123D5C7960022D497 /* BreakingBadMVVMTests */,
-				E08943DC23D5C7960022D497 /* BreakingBadMVVMUITests */,
 				E08943B923D5C78E0022D497 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,15 +149,6 @@
 				E0D4148A23E98D0B00966A44 /* characters.json */,
 			);
 			path = BreakingBadMVVMTests;
-			sourceTree = "<group>";
-		};
-		E08943DC23D5C7960022D497 /* BreakingBadMVVMUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E08943DD23D5C7960022D497 /* BreakingBadMVVMUITests.swift */,
-				E08943DF23D5C7960022D497 /* Info.plist */,
-			);
-			path = BreakingBadMVVMUITests;
 			sourceTree = "<group>";
 		};
 		E08943ED23D5EE510022D497 /* Controllers */ = {
@@ -222,6 +209,7 @@
 				E08943B423D5C78E0022D497 /* Sources */,
 				E08943B523D5C78E0022D497 /* Frameworks */,
 				E08943B623D5C78E0022D497 /* Resources */,
+				E035522723F1808800667B7C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -342,6 +330,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E035522723F1808800667B7C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E08943B423D5C78E0022D497 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -379,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E08943DE23D5C7960022D497 /* BreakingBadMVVMUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

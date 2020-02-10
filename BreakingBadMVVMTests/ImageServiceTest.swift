@@ -13,73 +13,78 @@ class ImageServiceTest: XCTestCase {
 
     func testFetchImageWhenUrlOk() {
         let expectImg = XCTestExpectation(description: "expectImg")
-        
-        let imgUrl = "https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg"
-        
+
+        let imgUrl =
+                """
+                https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
+                """
+
         ImageService.shared.fetchImage(from: imgUrl) { result in
-            switch (result){
+            switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
-                break
             case .failure(let error):
                 XCTAssertNil(error)
                 XCTAssert(false)
             }
             expectImg.fulfill()
         }
-        
+
         wait(for: [expectImg], timeout: 5.0)
     }
-    
+
     func testErrorImageWhenUrlNOk() {
         let expectImg = XCTestExpectation(description: "expectImg")
-        
-        let imgUrl = "https://images.amcnetworks.com/amc/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg"
-        
+
+        let imgUrl =
+                """
+                https://images.amcnetworks.com/amc/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg
+                """
+
         ImageService.shared.fetchImage(from: imgUrl) { result in
-            switch (result){
+            switch result {
             case .success(let data):
                 XCTAssertNil(data)
                 XCTAssert(false)
-                break
             case .failure(let error):
                 XCTAssertNotNil(error)
             }
             expectImg.fulfill()
         }
-        
+
         wait(for: [expectImg], timeout: 5.0)
     }
-    
+
     func testFetchImageIsCached() {
         let expectImg = XCTestExpectation(description: "expectImg")
-        
-        let imgUrl = "https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg"
-        
+
+        let imgUrl =
+                """
+                https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
+                """
+
         ImageService.shared.fetchImage(from: imgUrl) { result in
-            switch (result){
+            switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
-                break
             case .failure(let error):
                 XCTAssertNil(error)
                 XCTAssert(false)
             }
             expectImg.fulfill()
         }
-        
+
         ImageService.shared.fetchImage(from: imgUrl) { result in
-            switch (result){
+            switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
-                break
             case .failure(let error):
                 XCTAssertNil(error)
                 XCTAssert(false)
             }
             expectImg.fulfill()
         }
-        
+
         wait(for: [expectImg], timeout: 5.0)
     }
 
