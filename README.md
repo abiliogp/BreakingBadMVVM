@@ -2,12 +2,17 @@
 ![platforms](https://img.shields.io/badge/platforms-iPhone-lightgrey)
 ![Build Status](https://travis-ci.com/abiliogp/BreakingBadMVVM.svg?branch=master)
 [![codecov](https://codecov.io/gh/abiliogp/BreakingBadMVVM/branch/master/graph/badge.svg)](https://codecov.io/gh/abiliogp/BreakingBadMVVM)
+[![codebeat badge](https://codebeat.co/badges/42253b0f-ecf4-4685-a402-ca2547e82167)](https://codebeat.co/projects/github-com-abiliogp-breakingbadmvvm-master)
 
 
 # BreakingBadMVVM
 
 A simple project build in Swift using Auto Layout Visual Format Language (VFL) under
 ModelView View Model (MVVM) architecture.
+
+<p align="center">
+  <img src="https://github.com/abiliogp/imagens/blob/master/breakingbad-mvvm-vfl.png" width="200px"/>
+</p>
 
 ## Goals
 VFL
