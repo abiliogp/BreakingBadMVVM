@@ -12,6 +12,7 @@ public struct Keys {
     struct Plist {
         static let baseUrl = "BASE_URL"
         static let endpointCharacters = "ENDPOINT_CHARACTERS"
+        static let titleApp = "TITLE_APP"
     }
 }
 

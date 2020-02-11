@@ -67,9 +67,17 @@ class CharactersViewController: UINavigationController {
     }
 
     private func setupView() {
+        self.setupNavigationBar()
         self.view.backgroundColor = .white
         self.view.addSubview(activityIndicator)
         self.view.addSubview(tableView)
+    }
+
+    private func setupNavigationBar() {
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        let navigationItem = UINavigationItem(title: Environment.titleApp)
+        navigationBar.setItems([navigationItem], animated: false)
+        self.navigationBar.addSubview(navigationBar)
     }
 
     private func setupConstraints() {
