@@ -10,6 +10,10 @@
 A simple project build in Swift using Auto Layout Visual Format Language (VFL) under
 ModelView View Model (MVVM) architecture.
 
+<p align="center">
+  <img src="https://github.com/abiliogp/imagens/blob/master/breakingbad-mvvm-vfl.png" width="200px"/>
+</p>
+
 ## Goals
 VFL
 
