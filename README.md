@@ -15,19 +15,19 @@ ModelView View Model (MVVM) architecture.
 </p>
 
 ## Goals
-VFL
+* VFL
 
-MVVM
+* MVVM
 
-No Libs
+* No External Libs
 
-Base URL stored xcconfig
+* Base URL stored xcconfig
 
-Unit test for MVVM
+* Unit test for MVVM
 
-Unit test for ApiService
+* Unit test for ApiService
 
-Test Suite
+* Test Suite
 
 ## References
 
