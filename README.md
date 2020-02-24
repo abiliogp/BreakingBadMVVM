@@ -3,6 +3,7 @@
 ![Build Status](https://travis-ci.com/abiliogp/BreakingBadMVVM.svg?branch=master)
 [![codecov](https://codecov.io/gh/abiliogp/BreakingBadMVVM/branch/master/graph/badge.svg)](https://codecov.io/gh/abiliogp/BreakingBadMVVM)
 [![codebeat badge](https://codebeat.co/badges/42253b0f-ecf4-4685-a402-ca2547e82167)](https://codebeat.co/projects/github-com-abiliogp-breakingbadmvvm-master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/55625bf6948e450aea64/maintainability)](https://codeclimate.com/github/abiliogp/BreakingBadMVVM/maintainability)
 
 
 # BreakingBadMVVM
