@@ -14,7 +14,7 @@ class CharacterServiceTests: XCTestCase {
     func testShouldReturnDataWhenFetch() {
         let expectFetch = XCTestExpectation()
 
-        Service.shared.fetchCharacters(completionHandler: { result in
+        CharacterService().fetchCharacters(completionHandler: { result in
             switch result {
             case .success(let characters):
                 XCTAssertFalse(characters.isEmpty)
@@ -27,5 +27,4 @@ class CharacterServiceTests: XCTestCase {
 
         wait(for: [expectFetch], timeout: 5.0)
     }
-
 }

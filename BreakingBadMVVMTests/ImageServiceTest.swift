@@ -19,7 +19,7 @@ class ImageServiceTest: XCTestCase {
                 https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
                 """
 
-        ImageService.shared.fetchImage(from: imgUrl) { result in
+        ImageService().fetchImage(from: imgUrl) { result in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
@@ -41,7 +41,7 @@ class ImageServiceTest: XCTestCase {
                 https://images.amcnetworks.com/amc/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg
                 """
 
-        ImageService.shared.fetchImage(from: imgUrl) { result in
+        ImageService().fetchImage(from: imgUrl) { result in
             switch result {
             case .success(let data):
                 XCTAssertNil(data)
@@ -63,7 +63,7 @@ class ImageServiceTest: XCTestCase {
                 https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
                 """
 
-        ImageService.shared.fetchImage(from: imgUrl) { result in
+        ImageService().fetchImage(from: imgUrl) { result in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
@@ -74,7 +74,7 @@ class ImageServiceTest: XCTestCase {
             expectImg.fulfill()
         }
 
-        ImageService.shared.fetchImage(from: imgUrl) { result in
+        ImageService().fetchImage(from: imgUrl) { result in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data)

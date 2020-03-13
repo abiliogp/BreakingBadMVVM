@@ -8,18 +8,16 @@
 
 import Foundation
 
-class CacheService {
+struct CacheService {
 
-    static let shared = CacheService()
+    private var fileManager: FileManager
 
-    private init() {}
-
-}
-
-extension CacheService {
+    init(fileManager: FileManager = FileManager.default) {
+        self.fileManager = fileManager
+    }
 
     func createFolderIfNeed(folder: String) throws -> URL {
-        let documentDirURL = try FileManager.default.url(
+        let documentDirURL = try fileManager.url(
             for: .documentDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
@@ -27,8 +25,8 @@ extension CacheService {
 
         let folderURL = documentDirURL.appendingPathComponent(folder)
 
-        if !FileManager.default.fileExists(atPath: folderURL.path) {
-            try FileManager.default.createDirectory(
+        if !fileManager.fileExists(atPath: folderURL.path) {
+            try fileManager.createDirectory(
                 atPath: folderURL.path,
                 withIntermediateDirectories: true,
                 attributes: nil)
@@ -41,7 +39,7 @@ extension CacheService {
     func hasFile(named: String, folder: String) throws -> Bool {
         var folderURL = try createFolderIfNeed(folder: folder)
         folderURL.appendPathComponent(named)
-        return FileManager.default.fileExists(atPath: folderURL.path)
+        return fileManager.fileExists(atPath: folderURL.path)
     }
 
     func saveFile(named: String, folder: String, data: Data) throws {
