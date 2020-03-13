@@ -15,6 +15,7 @@ class CharactersViewController: UINavigationController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
         return tableView
     }()
 
@@ -103,10 +104,14 @@ extension CharactersViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let character =  char[indexPath.row]
-        let cellViewModel = ItemCellViewModel(model: character)
-        let cell = ItemCell(with: cellViewModel)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseIdentifier) as? ItemCell {
+            let character =  char[indexPath.row]
+            let cellViewModel = ItemCellViewModel(model: character)
+            cell.setViewModel(with: cellViewModel)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

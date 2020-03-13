@@ -11,6 +11,8 @@ import UIKit
 
 class ItemCell: UITableViewCell {
 
+    static let reuseIdentifier = "ItemCell"
+
     private var itemCellViewModel: ItemCellViewModel?
 
     private let padding: CGFloat = 16
@@ -54,8 +56,7 @@ class ItemCell: UITableViewCell {
         setupConstraints()
     }
 
-    public convenience init(with modelView: ItemCellViewModel!) {
-        self.init(frame: .zero)
+    public func setViewModel(with modelView: ItemCellViewModel) {
         self.itemCellViewModel = modelView
         setupViewBind()
     }
