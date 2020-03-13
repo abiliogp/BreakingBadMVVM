@@ -60,10 +60,6 @@ extension CacheService {
     }
 
     func extractFileName(input: String) -> String {
-        let components = input.components(separatedBy: "/")
-        let output = components.filter { (str) -> Bool in
-            return str.contains("jpg") || str.contains("png") || str.contains("jpeg") || str.contains("JPG")
-        }.first
-        return output ?? input
+        return String(input.hash)
     }
 }

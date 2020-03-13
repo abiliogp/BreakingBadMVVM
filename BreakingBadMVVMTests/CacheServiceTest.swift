@@ -86,12 +86,13 @@ class CacheServiceTest: XCTestCase {
     func testExtractFileName() {
         let input =
                 """
-                https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
+                https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/\
+                cast_bb_700x1000_walter-white-lg.jpg
                 """
 
         let output = CacheService.shared.extractFileName(input: input)
 
-        XCTAssertEqual(output, "cast_bb_700x1000_walter-white-lg.jpg")
+        XCTAssertEqual(output, "-1162917412196231299")
     }
 
     func testExtractFileNameFromMiddle() {
@@ -103,7 +104,7 @@ class CacheServiceTest: XCTestCase {
 
         let output = CacheService.shared.extractFileName(input: input)
 
-        XCTAssertEqual(output, "Saul_Goodman.jpg")
+        XCTAssertEqual(output, "-5745117354248179294")
     }
 
     func testExtractFileNameFromPng() {
@@ -115,7 +116,7 @@ class CacheServiceTest: XCTestCase {
 
         let output = CacheService.shared.extractFileName(input: input)
 
-        XCTAssertEqual(output, "Todd_brba5b.png")
+        XCTAssertEqual(output, "132032068468539766")
     }
 
 }
