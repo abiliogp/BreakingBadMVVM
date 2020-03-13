@@ -12,10 +12,11 @@ import XCTest
 class CacheServiceTest: XCTestCase {
 
     let folderName = "testImg"
+    let cacheService = CacheService()
 
     override class func tearDown() {
         do {
-            let url = try CacheService.shared.createFolderIfNeed(folder: "testImg")
+            let url = try CacheService().createFolderIfNeed(folder: "testImg")
 
             try FileManager.default.removeItem(atPath: url.path)
         } catch {
@@ -25,7 +26,7 @@ class CacheServiceTest: XCTestCase {
 
     func testShouldCreateFolderIfNeed() {
         do {
-            let url = try CacheService.shared.createFolderIfNeed(folder: folderName)
+            let url = try cacheService.createFolderIfNeed(folder: folderName)
 
             XCTAssertNotNil(url.path)
         } catch {
@@ -35,7 +36,7 @@ class CacheServiceTest: XCTestCase {
 
     func testShouldCheckForFile() {
         do {
-            let hasFile = try CacheService.shared.hasFile(named: "", folder: folderName)
+            let hasFile = try cacheService.hasFile(named: "", folder: folderName)
 
             XCTAssert(hasFile)
         } catch {
@@ -48,8 +49,8 @@ class CacheServiceTest: XCTestCase {
         let data = Data()
 
         do {
-            try CacheService.shared.saveFile(named: file, folder: folderName, data: data)
-            let hasFile = try CacheService.shared.hasFile(named: file, folder: folderName)
+            try cacheService.saveFile(named: file, folder: folderName, data: data)
+            let hasFile = try cacheService.hasFile(named: file, folder: folderName)
 
             XCTAssert(hasFile)
         } catch {
@@ -65,11 +66,11 @@ class CacheServiceTest: XCTestCase {
         var loadData: Data!
 
         do {
-            try CacheService.shared.saveFile(named: file, folder: folderName, data: data)
+            try cacheService.saveFile(named: file, folder: folderName, data: data)
 
-            let hasFile = try CacheService.shared.hasFile(named: file, folder: folderName)
+            let hasFile = try cacheService.hasFile(named: file, folder: folderName)
 
-            try CacheService.shared.loadFile(named: file, folder: folderName) { (lData) in
+            try cacheService.loadFile(named: file, folder: folderName) { (lData) in
                 loadData = lData
                 expect.fulfill()
             }
@@ -90,7 +91,7 @@ class CacheServiceTest: XCTestCase {
                 cast_bb_700x1000_walter-white-lg.jpg
                 """
 
-        let output = CacheService.shared.extractFileName(input: input)
+        let output = cacheService.extractFileName(input: input)
 
         XCTAssertEqual(output, "-1162917412196231299")
     }
@@ -102,7 +103,7 @@ class CacheServiceTest: XCTestCase {
                 /revision/latest?cb=20120704065846
                 """
 
-        let output = CacheService.shared.extractFileName(input: input)
+        let output = cacheService.extractFileName(input: input)
 
         XCTAssertEqual(output, "-5745117354248179294")
     }
@@ -114,7 +115,7 @@ class CacheServiceTest: XCTestCase {
                 /revision/latest?cb=20130717134303
                 """
 
-        let output = CacheService.shared.extractFileName(input: input)
+        let output = cacheService.extractFileName(input: input)
 
         XCTAssertEqual(output, "132032068468539766")
     }

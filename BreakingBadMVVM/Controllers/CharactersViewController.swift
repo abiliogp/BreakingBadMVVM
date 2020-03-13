@@ -44,7 +44,7 @@ class CharactersViewController: UINavigationController {
     }
 
     private func setupMVVM() {
-        viewModel = CharactersViewModel(service: Service.shared)
+        viewModel = CharactersViewModel(service: CharacterService())
         setupBinding()
         viewModel?.setupController()
     }

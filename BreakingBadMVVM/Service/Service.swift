@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol CharacterServiceProtocol {
-    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void)
-}
-
 enum ServiceError: Error {
     case unavailable
     case decodeError
@@ -19,70 +15,72 @@ enum ServiceError: Error {
 
 struct Service {
 
-    static let shared = Service()
+    private var urlSession: URLSession
 
-    private let baseURL = Environment.baseUrl
-    private let endPointCharacters = Environment.endpointCharacters
-
-    private let folderNamed = Files.Folder.characters
-    private let fileNamed = Files.Payload.characters
-
-    private init() {}
-
-}
-
-extension Service: CharacterServiceProtocol {
-
-    func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
-        guard let url = URL(string: "\(baseURL)\(endPointCharacters)") else { return }
-
-        do {
-            if try CacheService.shared.hasFile(named: fileNamed, folder: folderNamed) {
-
-                try CacheService.shared.loadFile(named: fileNamed, folder: folderNamed) { (data) in
-                    self.convertData(data: data) { (result) in
-                        completionHandler(result)
-                    }
-                }
-            } else {
-                fetchFromServer(from: url) { (result) in
-                    completionHandler(result)
-                }
-            }
-        } catch {
-            fetchFromServer(from: url) { (result) in
-                completionHandler(result)
-            }
-        }
-
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
     }
 
-    func fetchFromServer(from url: URL, completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
-        URLSession.shared.dataTask(with: url) {(data, _, _) in
-            DispatchQueue.main.async {
+    func fetchAndCache(folder: String,
+                       file: String,
+                       from url: URL,
+                       completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
 
-                if let data = data {
-                    do {
-                        let characters = try JSONDecoder().decode([Character].self, from: data)
-                        completionHandler(.success(characters))
-                        try CacheService.shared.saveFile(named: self.fileNamed, folder: self.folderNamed, data: data)
-                    } catch {
-                        completionHandler(.failure(.decodeError))
-                    }
-                } else {
-                    completionHandler(.failure(.unavailable))
+        do {
+            if try CacheService().hasFile(named: file, folder: folder) {
+                try CacheService().loadFile(named: file, folder: folder) { (data) in
+                    completionHandler(.success(data))
                 }
+            } else {
+                fetchFromServer(folder: folder,
+                                file: file,
+                                from: url,
+                                completionHandler: completionHandler
+                )
+            }
+        } catch {
+            fetchFromServer(folder: folder,
+                            file: file,
+                            from: url,
+                            completionHandler: completionHandler
+            )
+        }
+    }
+
+    func fetchFromServer(folder: String,
+                         file: String,
+                         from url: URL,
+                         completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
+
+        fetchFromServer(from: url) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    completionHandler(.success(data))
+                    try CacheService().saveFile(named: file, folder: folder, data: data)
+                } catch {
+                    completionHandler(.failure(.decodeError))
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+
+    func fetchFromServer(from url: URL,
+                         completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
+
+        urlSession.dataTask(with: url) {(data, _, _) in
+            if let data = data {
+                completionHandler(.success(data))
+            } else {
+                completionHandler(.failure(.unavailable))
             }
         }.resume()
     }
 
-    private func convertData(data: Data, completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
-        do {
-            let characters = try JSONDecoder().decode([Character].self, from: data)
-            completionHandler(.success(characters))
-        } catch {
-            completionHandler(.failure(.decodeError))
-        }
+    func convertData<T: Decodable>(data: Data) throws -> T {
+        return try JSONDecoder().decode(T.self, from: data)
     }
 
 }

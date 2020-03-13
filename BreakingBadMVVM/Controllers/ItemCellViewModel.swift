@@ -19,9 +19,9 @@ class ItemCellViewModel {
 
     private var imgService: ImageService?
 
-    private var model: Character!
+    private var model: Character
 
-    init(service: ImageService = ImageService.shared, model: Character!) {
+    init(model: Character, service: ImageService = ImageService()) {
         self.imgService = service
         self.model = model
     }
@@ -35,12 +35,14 @@ class ItemCellViewModel {
         self.imgService?.fetchImage(from: model.img, completionHandler: { [weak self] (result) in
             guard let self = self else { return }
 
-            self.onImgLoading?(false)
-            switch result {
-            case .success(let img):
-                self.onImgReady?(img)
-            default:
-                break
+            DispatchQueue.main.async {
+                self.onImgLoading?(false)
+                switch result {
+                case .success(let img):
+                    self.onImgReady?(img)
+                default:
+                    break
+                }
             }
         })
     }

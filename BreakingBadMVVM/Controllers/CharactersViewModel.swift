@@ -18,19 +18,21 @@ class CharactersViewModel {
 
     var service: CharacterServiceProtocol
 
-    init(service: CharacterServiceProtocol = Service.shared) {
+    init(service: CharacterServiceProtocol = CharacterService()) {
         self.service = service
     }
 
     func setupController() {
         self.onLoading?(true)
         service.fetchCharacters { [weak self] result in
-            self?.onLoading?(false)
-            switch result {
-            case .success(let newCharacters):
-                self?.onCharacters?(newCharacters)
-            case .failure(let error):
-                self?.onError?(error)
+            DispatchQueue.main.async {
+                self?.onLoading?(false)
+                switch result {
+                case .success(let newCharacters):
+                    self?.onCharacters?(newCharacters)
+                case .failure(let error):
+                    self?.onError?(error)
+                }
             }
         }
     }
