@@ -6,23 +6,21 @@
 //  Copyright © 2020 Abilio Gambim Parada. All rights reserved.
 //
 
-import Foundation
-
-public struct Keys {
-    struct Plist {
+public enum Keys {
+    enum Plist {
         static let baseUrl = "BASE_URL"
         static let endpointCharacters = "ENDPOINT_CHARACTERS"
         static let titleApp = "TITLE_APP"
     }
 }
 
-public struct Files {
-    struct Folder {
+public enum Files {
+    enum Folder {
         static let images = "img"
         static let characters = "charcs"
     }
 
-    struct Payload {
+    enum Payload {
         static let characters = "characters.json"
     }
 }
