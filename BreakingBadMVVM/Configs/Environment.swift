@@ -17,24 +17,26 @@ public enum Environment {
         return dict
     }()
 
-    static let baseUrl: String = {
-        guard let baseUrl = Environment.infoDictionary[Keys.Plist.baseUrl] as? String else {
+    private static func getValueForKey(key: String) -> String {
+        guard let value = Environment.infoDictionary[key] as? String else {
             fatalError("API Key not set in plist for this environment")
         }
-        return baseUrl
+        return value
+    }
+}
+
+extension Environment {
+
+    static let baseUrl: String = {
+        return getValueForKey(key: Keys.Plist.baseUrl)
     }()
 
     static let endpointCharacters: String = {
-        guard let endpointCharacters = Environment.infoDictionary[Keys.Plist.endpointCharacters] as? String else {
-            fatalError("API Key not set in plist for this environment")
-        }
-        return endpointCharacters
+        return getValueForKey(key: Keys.Plist.endpointCharacters)
     }()
 
     static let titleApp: String = {
-        guard let titleApp = Environment.infoDictionary[Keys.Plist.titleApp] as? String else {
-            fatalError("API Key not set in plist for this environment")
-        }
-        return titleApp
+        return getValueForKey(key: Keys.Plist.titleApp)
     }()
+
 }
