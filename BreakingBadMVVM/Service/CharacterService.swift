@@ -12,44 +12,30 @@ protocol CharacterServiceProtocol {
     func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void)
 }
 
-struct CharacterService {
+class CharacterService: Service {
 
-    private let service: Service
-    private let cacheService: CacheService
-
-    private let baseURL = Environment.baseUrl
-    private let endPointCharacters = Environment.endpointCharacters
-
-    private let folderNamed = Files.Folder.characters
-    private let fileNamed = Files.Payload.characters
-
-    init(service: Service = Service(),
-         cacheService: CacheService = CacheService()) {
-        self.service = service
-        self.cacheService = cacheService
-    }
 }
 
 extension CharacterService: CharacterServiceProtocol {
 
     func fetchCharacters(completionHandler: @escaping (Result<[Character], ServiceError>) -> Void) {
-        guard let url = URL(string: "\(baseURL)\(endPointCharacters)") else { return }
+        guard let url = URL(string: "\(Environment.baseUrl)\(Environment.endpointCharacters)") else { return }
 
-        service.fetchAndCache(folder: folderNamed,
-                              file: fileNamed,
-                              from: url) { result in
-                                switch result {
-                                case .success(let data):
-                                    do {
-                                        let converted = try self.service.convertData(data: data) as [Character]
-                                        completionHandler(.success(converted))
-                                    } catch {
-                                        completionHandler(.failure(.decodeError))
-                                    }
+        fetchAndCache(folder: Files.Folder.characters,
+                      file: Files.Payload.characters,
+                      from: url) { result in
+                        switch result {
+                        case .success(let data):
+                            do {
+                                let converted = try self.convertData(data: data) as [Character]
+                                completionHandler(.success(converted))
+                            } catch {
+                                completionHandler(.failure(.decodeError))
+                        }
 
-                                case .failure(let error):
-                                    completionHandler(.failure(error))
-                                }
+                        case .failure(let error):
+                            completionHandler(.failure(error))
+                        }
         }
     }
 
