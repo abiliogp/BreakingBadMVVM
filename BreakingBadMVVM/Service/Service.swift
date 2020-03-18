@@ -13,12 +13,15 @@ enum ServiceError: Error {
     case decodeError
 }
 
-struct Service {
+class Service {
 
     private var urlSession: URLSession
+    internal var cacheService: CacheService
 
-    init(urlSession: URLSession = URLSession.shared) {
+    init(urlSession: URLSession = URLSession.shared,
+         cacheService: CacheService = CacheService()) {
         self.urlSession = urlSession
+        self.cacheService = cacheService
     }
 
     func fetchAndCache(folder: String,
@@ -27,8 +30,8 @@ struct Service {
                        completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
 
         do {
-            if try CacheService().hasFile(named: file, folder: folder) {
-                try CacheService().loadFile(named: file, folder: folder) { (data) in
+            if try cacheService.hasFile(named: file, folder: folder) {
+                try cacheService.loadFile(named: file, folder: folder) { (data) in
                     completionHandler(.success(data))
                 }
             } else {
@@ -57,7 +60,7 @@ struct Service {
             case .success(let data):
                 do {
                     completionHandler(.success(data))
-                    try CacheService().saveFile(named: file, folder: folder, data: data)
+                    try self.cacheService.saveFile(named: file, folder: folder, data: data)
                 } catch {
                     completionHandler(.failure(.decodeError))
                 }
