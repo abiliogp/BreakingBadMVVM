@@ -57,6 +57,18 @@ struct CacheService {
         completionHandler(imgData)
     }
 
+    func remove(folder: String) throws {
+        let documentDirURL = try fileManager.url(
+                                                for: .documentDirectory,
+                                                in: .userDomainMask,
+                                                appropriateFor: nil,
+                                                create: false)
+        let folderURL = documentDirURL.appendingPathComponent(folder)
+        if fileManager.fileExists(atPath: folderURL.path) {
+            try fileManager.removeItem(atPath: folderURL.path)
+        }
+    }
+
     func extractFileName(input: String) -> String {
         return String(input.hash)
     }

@@ -23,11 +23,35 @@ class Service {
         self.urlSession = urlSession
         self.cacheService = cacheService
     }
+}
 
-    func fetchAndCache(folder: String,
-                       file: String,
-                       from url: URL,
-                       completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
+extension Service {
+    private func fetchFromServer(folder: String,
+                                 file: String,
+                                 from url: URL,
+                                 completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
+
+        urlSession.dataTask(with: url) {(data, _, _) in
+            if let data = data {
+                do {
+                    completionHandler(.success(data))
+                    try self.cacheService.saveFile(named: file, folder: folder, data: data)
+                } catch {
+                    completionHandler(.failure(.decodeError))
+                }
+
+            } else {
+                completionHandler(.failure(.unavailable))
+            }
+        }.resume()
+    }
+}
+
+extension Service {
+    internal func fetchAndCache(folder: String,
+                                file: String,
+                                from url: URL,
+                                completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
 
         do {
             if try cacheService.hasFile(named: file, folder: folder) {
@@ -50,40 +74,7 @@ class Service {
         }
     }
 
-    func fetchFromServer(folder: String,
-                         file: String,
-                         from url: URL,
-                         completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
-
-        fetchFromServer(from: url) { (result) in
-            switch result {
-            case .success(let data):
-                do {
-                    completionHandler(.success(data))
-                    try self.cacheService.saveFile(named: file, folder: folder, data: data)
-                } catch {
-                    completionHandler(.failure(.decodeError))
-                }
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
-    }
-
-    func fetchFromServer(from url: URL,
-                         completionHandler: @escaping (Result<Data, ServiceError>) -> Void) {
-
-        urlSession.dataTask(with: url) {(data, _, _) in
-            if let data = data {
-                completionHandler(.success(data))
-            } else {
-                completionHandler(.failure(.unavailable))
-            }
-        }.resume()
-    }
-
-    func convertData<T: Decodable>(data: Data) throws -> T {
+    internal func convertData<T: Decodable>(data: Data) throws -> T {
         return try JSONDecoder().decode(T.self, from: data)
     }
-
 }
