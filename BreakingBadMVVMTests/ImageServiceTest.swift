@@ -12,80 +12,72 @@ import XCTest
 class ImageServiceTest: XCTestCase {
 
     func testFetchImageWhenUrlOk() {
-        let expectImg = XCTestExpectation(description: "expectImg")
-
         let imgUrl =
-                """
-                https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
-                """
+        """
+        https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/\
+        cast_bb_700x1000_walter-white-lg.jpg
+        """
 
-        ImageService().fetchImage(from: imgUrl) { result in
-            switch result {
-            case .success(let data):
-                XCTAssertNotNil(data)
-            case .failure(let error):
-                XCTAssertNil(error)
-                XCTAssert(false)
-            }
-            expectImg.fulfill()
-        }
+        let (imgData, serviceError) = fetchImage(from: imgUrl)
 
-        wait(for: [expectImg], timeout: 5.0)
+        XCTAssertNotNil(imgData)
+        XCTAssertNil(serviceError)
     }
 
     func testErrorImageWhenUrlNOk() {
-        let expectImg = XCTestExpectation(description: "expectImg")
+        let imgUrl =
+        """
+        https://images.amcnetworks.com/amc/wp-content/uploads/2015/04/\
+        cast_bb_700x1000_walter-white-lg
+        """
+
+        let (imgData, serviceError) = fetchImage(from: imgUrl)
+
+        XCTAssertNil(imgData)
+        XCTAssertNotNil(serviceError)
+        XCTAssertEqual(serviceError, ServiceError.decodeError)
+    }
+
+    func testFetchImageIsCached() throws {
 
         let imgUrl =
-                """
-                https://images.amcnetworks.com/amc/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg
-                """
+        """
+        https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/\
+        cast_bb_700x1000_walter-white-lg.jpg
+        """
 
-        ImageService().fetchImage(from: imgUrl) { result in
+        let (imgData, serviceError) = fetchImage(from: imgUrl)
+
+        let (imgDataCached, serviceErrorCached) = fetchImage(from: imgUrl)
+
+        XCTAssertNotNil(imgData)
+        XCTAssertNil(serviceError)
+
+        XCTAssertNotNil(imgDataCached)
+        XCTAssertNil(serviceErrorCached)
+    }
+
+}
+
+extension ImageServiceTest {
+    private func fetchImage(from: String) -> (UIImage?, ServiceError?) {
+        let expectImg = XCTestExpectation(description: "expectImg")
+
+        var imgData: UIImage?
+        var serviceError: ServiceError?
+
+        ImageService().fetchImage(from: from) { result in
             switch result {
             case .success(let data):
-                XCTAssertNil(data)
-                XCTAssert(false)
+                imgData = data
             case .failure(let error):
-                XCTAssertNotNil(error)
+                serviceError = error
             }
             expectImg.fulfill()
         }
 
         wait(for: [expectImg], timeout: 5.0)
+
+        return (imgData, serviceError)
     }
-
-    func testFetchImageIsCached() {
-        let expectImg = XCTestExpectation(description: "expectImg")
-
-        let imgUrl =
-                """
-                https://images.amcnetworks.com/amc.com/wp-content/uploads/2015/04/cast_bb_700x1000_walter-white-lg.jpg
-                """
-
-        ImageService().fetchImage(from: imgUrl) { result in
-            switch result {
-            case .success(let data):
-                XCTAssertNotNil(data)
-            case .failure(let error):
-                XCTAssertNil(error)
-                XCTAssert(false)
-            }
-            expectImg.fulfill()
-        }
-
-        ImageService().fetchImage(from: imgUrl) { result in
-            switch result {
-            case .success(let data):
-                XCTAssertNotNil(data)
-            case .failure(let error):
-                XCTAssertNil(error)
-                XCTAssert(false)
-            }
-            expectImg.fulfill()
-        }
-
-        wait(for: [expectImg], timeout: 5.0)
-    }
-
 }

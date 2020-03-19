@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 protocol ImageServiceProtocol {
-    func fetchImage(from url: String, completionHandler: @escaping (Result<UIImage, ServiceError>) -> Void)
+    func fetchImage(from url: String,
+                    completionHandler: @escaping (Result<UIImage, ServiceError>) -> Void)
 }
 
 class ImageService: Service {
@@ -34,7 +35,7 @@ extension ImageService: ImageServiceProtocol {
                                 completionHandler(.success(image))
                             } else {
                                 completionHandler(.failure(.decodeError))
-                        }
+                            }
                         case .failure(let error):
                             completionHandler(.failure(error))
                         }
